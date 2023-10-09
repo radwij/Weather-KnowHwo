@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+</head>
+<body>
+    <h1>Current Weather</h1>
+    <div id="weather-info">
+        <!-- Weather information will be displayed here -->
+    </div>
+    <script>
+        const data = null;
+
+        const xhr = new XMLHttpRequest();
+        xhr.withCredentials = true;
+
+        xhr.addEventListener('readystatechange', function () {
+            if (this.readyState === this.DONE) {
+                // Parse the JSON response from the API
+                const response = JSON.parse(this.responseText);
+
+                // Extract the weather data you want to display
+                const location = response.location.name;
+                const temperature = response.current.temp_c;
+                const condition = response.current.condition.text;
+
+                // Create an HTML string to display the weather information
+                const weatherHTML = `
+                    <p>Location: ${location}</p>
+                    <p>Temperature: ${temperature}°C</p>
+                    <p>Condition: ${condition}</p>
+                `;
+
+                // Display the weather information in the designated div
+                document.getElementById('weather-info').innerHTML = weatherHTML;
+            }
+        });
+
+        xhr.open('GET', 'https://weatherapi-com.p.rapidapi.com/current.json?q=53.1%2C-0.13');
+        xhr.setRequestHeader('X-RapidAPI-Key', '21fbbdea10msh8a5c59318793830p1621c4jsn5c81bd2c4046');
+        xhr.setRequestHeader('X-RapidAPI-Host', 'weatherapi-com.p.rapidapi.com');
+
+        xhr.send(data);
+    </script>
+</body>
+</html>
