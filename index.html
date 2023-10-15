@@ -4,45 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather App</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="script.js" defer></script>
 </head>
-<body>
-    <h1>Current Weather</h1>
-    <div id="weather-info">
-        <!-- Weather information will be displayed here -->
-    </div>
-    <script>
-        const data = null;
+    <body>
+        <div class="container">
+        <h1><span>Weather.</span> Across The World</h1>
+            <div class="card">
+                <div class="search-bar">
+                    <input type="text" placeholder="Enter City" spellcheck="false">
+                    <button><img src="icons/search-solid.svg" alt="Search"></button>
+                </div>
 
-        const xhr = new XMLHttpRequest();
-        xhr.withCredentials = true;
+                <div class="weather-container">
+                    <h2 class="city-name">Surabaya</h2>
+                    <img src="icons/cloud-sun-solid.svg" alt="image">
+                    <h3 class="current-weather">Sunny</h3>
+                </div>
 
-        xhr.addEventListener('readystatechange', function () {
-            if (this.readyState === this.DONE) {
-                // Parse the JSON response from the API
-                const response = JSON.parse(this.responseText);
+                <div class="weather-detail">
+                    <div class="detail-container">
+                        <img src="icons/temperature-low-solid.svg" alt="image">
+                        <div class="detail-text">
+                            <h2>Temperature</h2>
+                            <h3 class="temp-text">31°C</h3>
+                        </div>
+                        
+                    </div>
 
-                // Extract the weather data you want to display
-                const location = response.location.name;
-                const temperature = response.current.temp_c;
-                const condition = response.current.condition.text;
-
-                // Create an HTML string to display the weather information
-                const weatherHTML = `
-                    <p>Location: ${location}</p>
-                    <p>Temperature: ${temperature}°C</p>
-                    <p>Condition: ${condition}</p>
-                `;
-
-                // Display the weather information in the designated div
-                document.getElementById('weather-info').innerHTML = weatherHTML;
-            }
-        });
-
-        xhr.open('GET', 'https://weatherapi-com.p.rapidapi.com/current.json?q=53.1%2C-0.13');
-        xhr.setRequestHeader('X-RapidAPI-Key', '21fbbdea10msh8a5c59318793830p1621c4jsn5c81bd2c4046');
-        xhr.setRequestHeader('X-RapidAPI-Host', 'weatherapi-com.p.rapidapi.com');
-
-        xhr.send(data);
-    </script>
-</body>
+                    <div class="detail-container">
+                        <img src="icons/wind-solid.svg" alt="image">
+                        <div class="detail-text">
+                            <h2>Wind Speed</h2>
+                            <h3 class="wind-text">29km/h</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
 </html>
